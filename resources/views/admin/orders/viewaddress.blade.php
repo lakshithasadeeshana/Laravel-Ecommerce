@@ -1,0 +1,72 @@
+@extends('layouts.app')
+
+@section('content')
+<div>
+    <a style="margin: 19px;" href="/admin/orders" class="btn btn-primary">Back To Orders</a>
+    </div>
+
+    
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E shop</title>
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="container">
+
+
+
+
+    <div class="row">
+<div class="col-sm-12">
+    <h2 class="display-3">Customer Orders Items</h2>    
+
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <td>ID</td>
+          <td>Full Name</td>
+          <th>State</th>
+          <th>City</th>
+          <th>Payment Type</th>
+         
+                   
+          
+        </tr>
+    </thead>
+    <tbody>
+    <tbody>
+    @foreach($address as $ad)
+        <tr>
+           <td>{{$ad->id}}</td>
+            <td>{{$ad->fullname}}</td>
+            <td>{{$ad->state}} </td>
+            <td>{{$ad->city}} </td>
+            <td>{{$ad->payment_type}}</td>
+            
+               
+       @endforeach 
+                </form>
+            </td>
+        </tr>
+       
+    </tbody>
+    </tbody>
+  </table>
+<div>
+</div>
+
+
+
+
+
+</div>
+  <script src="{{ asset('js/app.js') }}" type="text/js"></script>
+</body>
+</html>
+
+@endsection
