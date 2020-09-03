@@ -15,11 +15,16 @@
                         
                     </div>
                     <div class="col company-details">
+                    <h1 style="color:#09E8EF; margin-left:500px;">INVOICE</h1>
+                    <p style=" margin-left:500px;">Date : {{ date('Y-m-d H:i:s') }}</p>
                         <h2 >
-                        E shop   
+                        Electronic Hub   
                         </h2>
-                        <div>NO 300, Main Street,Elpitiya,Srilanka.</div>
-                        <div>0777123456</div>
+                        <div><p>NO 300, Main Street,</p>
+                        <p> Elpitiya,</p>
+                        <p> Srilanka.</p>
+                             </div>
+                        <div>0783245678</div>
                         <div><a href="company@example.com">company@example.com</a></div>
                     </div>
                 </div>
@@ -30,29 +35,30 @@
                     <div class="col invoice-to">
                     <br><br>
                         <label class="text-gray-light">INVOICE TO:</label>
-                        @foreach($address as $ad)
-                        <h2 class="to">{{$ad->fullname}}</h2>
+                       
+                        <h4 class="to" >{{$address->fullname}}</h4>
                         
-                        <div class="address">{{$ad->state}} , </div>
-                        <div>{{$ad->city}} </div>
+                        <div class="address">{{$address->state}} , </div>
+                        <div>{{$address->city}} </div>
                         <div>Srilanka.</div>
                         <?php  
-                      $userid_id=$ad->user_id;
+                      $userid_id=$address->user_id;
                       $useremail=DB::table('users')->where('id',$userid_id)->pluck('email');
                   ?>
                         <div class="email"><a href="{{$useremail}}">{{$useremail}}</a></div>
-                        @endforeach 
+                        
                     </div>
                     <br><br>
+
                 </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th >PRODUCT NAME</th>
-                            <th >ITEM PRICE</th>
-                            <th >QUANTITY</th>
-                            <th >TOTAL</th>
+                            <th>PRODUCT NAME</th>
+                            <th>ITEM PRICE</th>
+                            <th>QUANTITY</th>
+                            <th>TOTAL</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +92,7 @@
                         <tr>
                             <td colspan="2"></td>
                             <td colspan="2">GRAND TOTAL</td>
-                            <td> $6,500.00</td>
+                            <td>Rs. {{$total}}</td>
                         </tr>
                     </tfoot>
                 </table>

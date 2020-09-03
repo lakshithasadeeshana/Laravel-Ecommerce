@@ -10,14 +10,13 @@
     
 
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E shop</title>
+
+
+
+
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
-</head>
-<body>
+
+
   <div class="container">
 
 
@@ -81,6 +80,7 @@
                 <form action="{{ route('suppliers.destroy', $i->id)}}" method="post">
                   @csrf
                   @method('DELETE')
+                  
                   <?php if(($supplierproduct)-($soldproduct)<1){
                    echo'<button class="btn btn-danger" type="submit">Delete</button>';
 
@@ -104,7 +104,10 @@
 
 </div>
   <script src="{{ asset('js/app.js') }}" type="text/js"></script>
-</body>
-</html>
+
+  </div>
+</div>
+</div>
+@include('foter')
 
 @endsection

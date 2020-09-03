@@ -57,10 +57,25 @@ class ProductController extends Controller
     }
 
     public function detailpro($id){
-     
+         //$sum = Product::getStarRating();
+         //echo($sum);
+       //$reviews = DB::table('product_reviews')->where('product_id',$id)->get();
+
+       $reviews = DB::table('product_reviews')
+       ->leftJoin('users','users.id','=','product_reviews.user_id')
+       ->where('product_reviews.product_id','=',$id)->get();
+
        $product = DB::table('products')->where('id',$id)->get();
-       return view('product_detail',['product'=>$product]);
-      
+       //$product_name = $product->pro_name;
+
+      //$product_name = DB::table('products')->where('id',$id)->get('pro_name');
+       //$rasp= 'Raspberry';
+      // $similer_product = DB::table('products')->where('pro_name','like','%'.$rasp.'%')->get();
+       //return view('shop',['product'=>$product]);
+
+       return view('product_detail',['product'=>$product,'reviews'=>$reviews]);
+     // echo($reviews);
+     // echo($similer_product);
     
 
     }
@@ -85,12 +100,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'pro_name'=>'required',
+            'pro_price'=>'required',
+            'pro_saleprice'=>'required',
+            'pro_qty'=>'required',
+            'image' =>'required'
+        ]);
           //save image local
         $image = $request->image;
         if($image){
             $imageName=$image->getClientOriginalName();
             $image->move('images',$imageName);
+            
             
         }
 
@@ -122,7 +144,7 @@ class ProductController extends Controller
        
            //dd($product);
         $product->save();
-         return redirect('admin/products/manageproduct')->with('success', 'Contact saved!');
+         return redirect('admin/products/manageproduct')->with('success', 'Product saved!');
     }
 
     /**

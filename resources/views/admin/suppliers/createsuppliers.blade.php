@@ -50,7 +50,7 @@
           </div>
           <div class="form-group">
               <label for="city">Phone:</label>
-              <input type="number" class="form-control" name="phone"/>
+              <input type="number" class="form-control" name="phone" minlength="10" maxlength="10"/>
           </div>
                                  
           <button type="submit" class="btn btn-primary">Add Supplier</button>

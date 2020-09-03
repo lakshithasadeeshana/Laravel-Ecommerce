@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\ProductReview;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -20,4 +20,15 @@ class Product extends Model
         
                
     ];
+
+    public function reviews(){
+        
+        return $this->hasMany(ProductReview::class);
+    }
+
+    public static function getStarRating(){
+      $starcount =reviews()->sum('rating');
+      return  $average = $this->$starcount/reviews().count();
+    }
 }
+

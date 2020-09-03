@@ -9,14 +9,14 @@
     
 
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E shop</title>
+    
+
+
+  
+  
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
-</head>
-<body>
+
+
   <div class="container">
 
 
@@ -59,6 +59,24 @@
             <td>
                 <a href="{{ url('/admin/orders/edit',$o->id)}}" class="btn btn-warning">Update</a>
             </td>
+
+
+
+
+            <td>
+            <?php 
+
+          $value = DB::table('shippings')->where('order_id',$o->id)->get()->count('id');
+
+            if($value>=1){
+              echo '<button class="btn btn-danger" >Complete Handover</button>';
+             }
+             else{
+             ?>
+             <a href="{{ url('admin/shipping',$o->id)}}" class= "btn btn-warning">Shipping </a>
+           
+               <?php } ?> 
+            </td>
          
        @endforeach 
                 </form>
@@ -77,7 +95,9 @@
 
 </div>
   <script src="{{ asset('js/app.js') }}" type="text/js"></script>
-</body>
-</html>
+</div>
+</div>
+</div>
+  @include('foter')
 
 @endsection

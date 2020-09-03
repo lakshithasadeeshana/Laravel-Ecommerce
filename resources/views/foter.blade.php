@@ -16,7 +16,7 @@
 
         <!-- Grid column -->
         <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0" style="color:#ebecee;">
-          <h6 class="mb-0">Get connected with us on social networks!</h6>
+          <h5  style="font-family:'Courier New', Courier, monospace">Get connected with us on social networks!</h5>
         </div>
         <!-- Grid column -->
 
@@ -40,7 +40,7 @@
           </a>
 
           <!--Linkedin -->
-          <a class="li-ic">
+          <a class="social" href="#">
             <i class="fa fa-linkedin-in white-text mr-4"> </i>
           </a>
 
@@ -125,7 +125,7 @@
         
 
         <p>
-        <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>&nbsp; info@example.com</p>
+        <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>&nbsp; info@elpitiyaelectronic.com</p>
 
 
         <p>

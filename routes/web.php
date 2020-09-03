@@ -34,9 +34,15 @@ Route::put('cart/update/{id}','CartController@update');
 Route::get('cart/remove/{id}','CartController@destroy');
 Route::get('checkout','CheckoutController@checkout');
 Route::post('/admin/formvalidate','CheckoutController@address');
+//Route::post('/admin/custamize','UserController@update');
+Route::resource('users', 'AdminController');
 
-
+//user routes
 Route::get('/orders','UserController@orders');
+Route::put('user/editaddress/{id}','UserController@updateaddress');
+Route::get('/user/editaddress','UserController@changeaddress');
+Route::get('/user/viewmyratings' ,'ProductReviewController@userreview');
+
 
 
 
@@ -189,3 +195,46 @@ Route::get('/admin/soldproduct',function(){
 });
 
 Route::get('admin/soldproduct', 'SalesController@listsoldproduct');
+
+
+
+//review
+Route::resource('productsreview', 'ProductReviewController');
+
+
+
+
+
+
+ //charts
+ Route::get('/admin', 'ChartController@soldproduct');
+
+
+ //users
+ Route::get('/admin/customers',function(){
+    return view('/admin/customers');
+ });
+
+ Route::get('/admin/customers','AdminController@customerlist');
+
+//shipping
+Route::resource('shipping', 'ShippingController');
+
+Route::get('/admin/shipping/{id}','ShippingController@edit');
+
+Route::get('/admin/shippings',function(){
+    return view('/admin/Shipping/manageShipping');
+ });
+
+ Route::get('/admin/shippings','ShippingController@list');
+ Route::get('/searchshipping','ShippingController@searchshipping');
+ Route::get('/searchshippingbyid','ShippingController@searchshippingbyid');
+
+
+
+ Route::post('/admin/shippings/create','ShippingController@storecompany');
+
+ Route::get('/admin/shippings/create',function(){
+    return view('/admin/Shipping/createshipping');
+ });
+

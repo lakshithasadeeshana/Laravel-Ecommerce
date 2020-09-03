@@ -70,4 +70,5 @@
         </div>
     </div>
 </div>
+@include('foter')
 @endsection

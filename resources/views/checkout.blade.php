@@ -99,26 +99,26 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="firstname" class="form-label">Name</label>
-                                        <input id="firstname" type="text" name="fullname" placeholder=" Name"  value="{{ old('firstname') }}" class="form-control">
+                                        <input id="firstname" type="text" name="fullname" placeholder=" Name"  value="{{ $address->fullname }}" class="form-control">
                                         <br>
                                         <span style="color:red">{{ $errors->first('fullname') }}</span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="lastname" class="form-label">Address</label>
-                                        <input id="lastname" type="text" name="state" placeholder="Address" value="{{ old('state') }}" class="form-control">
+                                        <input id="lastname" type="text" name="state" placeholder="Address" value="{{ $address->state}}" class="form-control">
                                         <br>
                                         <span style="color:red">{{ $errors->first('state') }}</span>
                                     </div>
                                     
                                     <div class="form-group col-md-6">
                                         <label for="lastname" class="form-label">City Name</label>
-                                        <input id="lastname" type="text" name="city" placeholder="City Name" value="{{ old('city') }}" class="form-control">
+                                        <input id="lastname" type="text" name="city" placeholder="City Name" value="{{ $address->city }}" class="form-control">
                                         <br>
                                         <span style="color:red">{{ $errors->first('city') }}</span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="lastname" class="form-label">Phone</label>
-                                        <input id="lastname" type="number" name="" placeholder="phone"  class="form-control">
+                                        <input id="lastname" type="number" name="phone" placeholder="phone" value="{{ $address->phone }}" class="form-control">
                                         <br>
                                         
                                     </div>
@@ -147,7 +147,7 @@
                         
                         <ul class="order-menu list-unstyled">
                             <li class="d-flex justify-content-between"><span>Order Subtotal </span><strong>Rs.{{Cart::subtotal()}}</strong></li>
-                            <li class="d-flex justify-content-between"><span>Shipping and handling</span><strong>Cash on Delevery</strong></li>
+                            <li class="d-flex justify-content-between"><span>Order Quantity</span><strong> {{Cart::count()}} </strong></li>
                             
                             <li class="d-flex justify-content-between"><span>Total</span><strong class="text-primary price-total">Rs.{{Cart::subtotal()}}</strong></li>
                         </ul>

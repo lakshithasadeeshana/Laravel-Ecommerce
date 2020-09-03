@@ -9,8 +9,10 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <!----------------font awesome------------->
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
        
     </head>
     <body>
@@ -25,12 +27,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/" >Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/" ><i class="fa fa-home fa-1.5x" ></i> Home <span class="sr-only">(current)</span></a>
       </li>
       
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categories
+        <i class="fa fa-list fa-1.5x"> Categories</i>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <?php $cats =DB::table('categories')->get(); ?>
@@ -43,7 +45,7 @@
 
       <?php if(Auth::check()){ ?>
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-1.5x" ></i> Profile</a>
                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">{{Auth::user()->name}}</a>
                     
@@ -56,8 +58,14 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    <?php 
+                                    $username = Auth::user()->name;
+                                    if($username=="Superadministrator" || $username=="Administrator"){
+                                     echo '<a class="dropdown-item" href="/admin">Admin Profile</a>';
+                                    }
+                                    ?>
                     <a class="dropdown-item" href="/user">User Profile</a>
-                    <a class="dropdown-item" href="/admin">Admin Profile</a>
+                    
             </li>
 
       <?php } else { ?>
@@ -70,7 +78,7 @@
 
 
       <li class="nav-item" style="list-style-type:none;">
-        <a class="nav-link" href="{{url('/cart')}}" >Shopping Cart ({{Cart::count()}} Items) Rs. ({{Cart::subtotal()}}) </a>
+        <a class="nav-link" href="{{url('/cart')}}" ><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i> Shopping Cart ({{Cart::count()}} Items) Rs. ({{Cart::subtotal()}}) </a>
       </li>
      
 

@@ -30,8 +30,9 @@
         <tr>
           <td>ID</td>
           <td>Full Name</td>
-          <th>State</th>
+          <th>Address</th>
           <th>City</th>
+          <th>Phone</th>
           <th>Payment Type</th>
          
                    
@@ -40,16 +41,17 @@
     </thead>
     <tbody>
     <tbody>
-    @foreach($address as $ad)
+   
         <tr>
-           <td>{{$ad->id}}</td>
-            <td>{{$ad->fullname}}</td>
-            <td>{{$ad->state}} </td>
-            <td>{{$ad->city}} </td>
-            <td>{{$ad->payment_type}}</td>
+           <td>{{$address->id}}</td>
+            <td>{{$address->fullname}}</td>
+            <td>{{$address->state}} </td>
+            <td>{{$address->city}} </td>
+            <td>{{$address->phone}} </td>
+            <td>{{$address->payment_type}}</td>
             
                
-       @endforeach 
+       
                 </form>
             </td>
         </tr>

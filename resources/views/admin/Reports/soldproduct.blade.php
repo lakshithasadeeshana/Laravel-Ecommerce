@@ -19,23 +19,21 @@
 <body>
   <div class="container">
   
-
-  
-
-          
-
     <div class="row">
 <div class="col-sm-12">
-    <h2 class="display-3">Inventry Report</h2>  
+<h1 style="text-align:center;">Electronic Shop</h1>
+    <h2 class="display-3" style="text-align:center;">Inventory Report</h2>  
+    <br>
 <table class="table table-striped">
     <thead>
         <tr>
         
           <td>Product ID</td>
           <th>Product Name</th>
-          <td>Added Quntity</td>
-          <td>Sold Quntity</td>
-          <td>Stock Quntity</td>
+          <td>Added Qty</td>
+          <td>Pending To Deliver Qty</td>
+          <td>Delivered Qty</td>
+          <td>Stock Available Qty</td>
                    
           
         </tr>
@@ -57,18 +55,27 @@
             
             <?php  
               $product_id=$oi->id;
-              $soldproduct=DB::table('order_product')->where('product_id',$product_id)->get()->sum('qty');
+              $orderedproduct=DB::table('order_product')->where('product_id',$product_id)->get()->sum('qty');
+
+              $deliveredproduct = DB::table('order_product')
+ ->leftJoin('shippings','shippings.order_id','=','order_product.order_id')
+ ->where('order_product.product_id','=',$product_id)->get()->sum('qty');
                   ?>
 
 
                  <?php
-           if($max<$soldproduct){
-            $max=$soldproduct;
+           if($max<$orderedproduct){
+            $max=$orderedproduct;
             $maxname=$oi->pro_name;
            }
          ?>
-            <td>{{$soldproduct}}</td>
-            <td>{{($oi->pro_qty)-$soldproduct}}</td>
+            <td>{{$deliveredproduct-$orderedproduct}}</td>
+
+<td>
+{{$deliveredproduct}}
+</td>
+
+            <td>{{($oi->pro_qty)-$deliveredproduct}}</td>
                
        @endforeach
                 </form>
@@ -78,8 +85,8 @@
     </tbody>
     </tbody>
   </table>
-  
-  <p>Max Selling product of this month : {{$maxname}}</p>
+  <br>
+  <p style="font-family:'Courier New', Courier, monospace;">Max Selling product of this month : {{$maxname}}</p>
    
   <div>
 </div>

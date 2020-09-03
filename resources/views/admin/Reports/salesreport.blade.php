@@ -32,7 +32,7 @@
   <div class="container">
   
 
-  <span><h4>Electronic shop</h4></span>
+
 
           
 
@@ -47,13 +47,22 @@
 
           </div>
           </div>
-      <br> <br> <br>
-      
+      <br> 
+      <h1 style="text-align:center;">Electronic shop</h1>
 
 
 
-    <h2 class="display-3">Sales Report</h2>    
-    
+
+<?php 
+
+$month_num =$month; 
+  
+$month_name = date("F", mktime(0, 0, 0, $month_num, 10));  
+?>
+
+
+    <h2 class="display-3" style="text-align:center;">Sales Report : <?php echo $month_name ?> 2020</h2>    
+    <br>
   <table class="table table-striped">
     <thead>
         <tr>
@@ -65,7 +74,7 @@
           <td>Purchase Cost</td>
           <td>Sold Quntity</td>
           <td>Sold Price</td>
-          <td>Sold Money</td>
+          <td>Income</td>
           <td>Profit</td>
           
           
@@ -121,17 +130,50 @@
     </tbody>
     </tbody>
   </table>
-  <p>Total Profit : {{$totalprofit}}</p>
-  <p>Total Added Product : {{$to2}}</p>
+  <h4>Total Profit : Rs. {{$totalprofit}}</h4>
+  <!---------<p>Total Added Product : {{$to2}}</p>------------->
 <div>
 </div>
 
+<!----------------------linegraph----------------->
 
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["linechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Day', 'Quantity'],
 
+
+@php
+  
+      foreach($soldproductday as $sd) {
+    
+    
+     echo "['".$sd->day."', ".$sd->total."],";
+
+ }
+	@endphp
+
+
+        ]);
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+        chart.draw(data, {width: 800, height: 240, legend: 'bottom', title: ''  });
+      }
+    </script>
+  </head>
+
+<br>
+    <div style="margin-left:150px;" id="chart_div2"></div>
+ 
+
+  <!------------------------------linegraph-------------------->
 
 </div>
-  
+
 </body>
 </html>
 

@@ -3,24 +3,21 @@
 @section('content')
 @include('adminnavigation')
 
-<div>
-    <a style="margin: 19px;" href="admin/suppliers/suppliers/createsuppliers" class="btn btn-primary">New Category</a>
-    </div>
+
     <br>
     <br>
     
 
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E shop</title>
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
-</head>
-<body>
-  <div class="container">
+   
 
+ 
+ 
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+
+
+  <div class="container">
+  <a style="margin: 19px;" href="admin/suppliers/suppliers/createsuppliers" class="btn btn-primary">New Category</a>
 
 
 
@@ -58,15 +55,19 @@
     </tbody>
   </table>
 <div>
-</div>
-
-
-
-
 
 </div>
-  <script src="{{ asset('js/app.js') }}" type="text/js"></script>
-</body>
-</html>
+
+
+
+
+<script src="{{ asset('js/app.js') }}" type="text/js"></script>
+</div>
+
+  </div>
+</div>
+</div>
+  @include('foter')
+
 
 @endsection

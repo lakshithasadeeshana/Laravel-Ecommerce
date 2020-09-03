@@ -56,7 +56,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $address = Address::where('user_id',$id)->get();
+        $address = Address::where('user_id',$id)->first();
        // echo($address);
         return view('admin/orders.viewaddress',['address'=>$address]);  
     }
@@ -116,7 +116,7 @@ class OrderController extends Controller
     public function invoice($orderid)
     {
         $userID= DB::table('orders')->where('id',$orderid)->pluck('user_id');
-        $address = Address::where('user_id',$userID)->get();
+        $address = DB::table('address')->where('user_id',$userID)->first();
          //echo($address);
         
 

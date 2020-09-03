@@ -16,7 +16,7 @@
 
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h2 >Update Requests</h2>
+        <h2 >Update Status</h2>
 <br>
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -41,6 +41,8 @@
               <option value="Shipped" >Shipped</option>
             
               </select>
+             
+
           </div>
             
 

@@ -72,4 +72,6 @@
      </div>
      @yield('editstatus')
      </div>
+     </div>
+     @include('foter')
 @endsection

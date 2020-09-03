@@ -137,8 +137,8 @@ $('#upCart<?php echo $i;?>').on('change keyup', function(){
                         <ul>
                             <li>Cart Sub Total <span>Rs.{{Cart::subtotal()}}</span></li>
                            
-                            <li>Shipping Cost <span>Free</span></li>
-                            <li>Total <span>Rs.{{Cart::subtotal()}}</span></li>
+                            <li>Cart Quantity <span>{{Cart::count()}} </span></li>
+                           
                         </ul>
                         
                         <a class="btn btn-primary" href="{{url('/')}}/checkout">Check Out</a>

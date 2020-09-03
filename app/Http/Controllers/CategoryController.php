@@ -31,6 +31,7 @@ class CategoryController extends Controller
   //this is for add category to product form
     
   public function showCates($id){
+      
     $category_product = Product::where('category_id',$id)->get();
     $id_=$id;
 

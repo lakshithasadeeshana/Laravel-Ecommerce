@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Address;
 use App\order;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -26,9 +27,11 @@ class CheckoutController extends Controller
 
     
     public function checkout(){
-        
+      $user_ID = Auth::user()->id;  
+
+      $address = DB::table('address')->where('user_id',$user_ID)->first();
         $cartItems = Cart::content();
-      return view('checkout',['cartItems'=>$cartItems]) ;
+      return view('checkout',['cartItems'=>$cartItems, 'address'=>$address]) ;
        // echo(Auth::user());
        return redirect('checkout');
 
@@ -40,7 +43,8 @@ class CheckoutController extends Controller
                 
               'fullname'=>'required|min:5',
               'city' =>'required',
-              'state'=>'required'
+              'state'=>'required',
+              'phone'=>'required'
               
               
             ]);

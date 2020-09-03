@@ -36,6 +36,9 @@ class LoginController extends Controller
         if($user->hasRole('user')){
             return redirect('/user');
         }
+        if($user->hasRole('administrator')){
+            return redirect('/admin');
+        }
 
     }
 

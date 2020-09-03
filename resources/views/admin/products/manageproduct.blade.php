@@ -10,16 +10,10 @@
     <br>
     <br>
     
-
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E shop</title>
+  
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
-</head>
-<body>
+
+
   <div class="container">
   
  <div class="col-md-4">
@@ -35,7 +29,14 @@
  
  
  </div>
-  
+ <div class="col-sm-12">
+
+@if(session()->get('success'))
+  <div class="alert alert-success">
+    {{ session()->get('success') }}  
+  </div>
+@endif
+</div>
 
           
 
@@ -51,7 +52,8 @@
           <td>Name</td>
           <td>Price</td>
           <td>Quantity</td>
-          <td>Sold</td>
+          <td>Delivered</td>
+          <td>Pending to Deliver</td>
           <td>Stock</td>
           
           
@@ -70,12 +72,32 @@
             <td>{{$p->pro_name}} </td>
             <td>{{$p->pro_price}}</td>
             <td>{{$p->pro_qty}}</td>
+
+
             <td><?php  
               $product_id=$p->id;
-              $soldproduct=DB::table('order_product')->where('product_id',$product_id)->get()->sum('qty');
+             // $pendingsoldproduct=DB::table('order_product')->where('product_id',$product_id)->get()->sum('qty');
+
+              $soldproduct = DB::table('order_product')
+              ->leftJoin('shippings','shippings.order_id','=','order_product.order_id')
+              ->where('order_product.product_id','=',$product_id)->get()->sum('qty');
+
                   ?>
+              
                   {{$soldproduct}}
+
                </td>
+
+
+
+            <td><?php  
+              $product_id=$p->id;
+              $deleverypending=DB::table('order_product')->where('product_id',$product_id)->get()->sum('qty');
+                  ?>
+                  {{$deleverypending}}
+               </td>
+
+              
               
             <td>{{($p->pro_qty)-($soldproduct)}}
             
@@ -97,10 +119,12 @@
              
              ?> 
             </td>
-
-
-            <td>
-                <a href="{{ route('products.edit',$p->id)}}" class="btn btn-primary">Edit</a>
+            <?php $user = Auth::user()->id; ?>
+              
+            
+              
+                <td>
+                <a href="{{ route('products.edit',$p->id)}}"class="btn btn-primary">Edit</a>
             </td>
 
 
@@ -108,9 +132,14 @@
                 <form action="{{ route('products.destroy', $p->id)}}" method="post">
                   @csrf
                   @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
+              <?php  if($user==1){
+               echo '<button class="btn btn-danger" type="submit">Delete</button>';
+              }
+                  ?>
                 </form>
-            </td>
+            </td> 
+         
+
         </tr>
         @endforeach
        
@@ -129,7 +158,10 @@
 
 </div>
   <script src="{{ asset('js/app.js') }}" type="text/js"></script>
-</body>
-</html>
+
+</div>
+</div>
+</div>
+@include('foter')
 
 @endsection
